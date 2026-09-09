@@ -16,6 +16,8 @@
 
 ## Change log
 
+- 9 September 2026: ISOFIT PR-1026, inversion windows patch (EMIT)
+
 - 2 September 2026: ISOFIT PR-1012, MODTRAN TP7 codes
 
 - 2 September 2026: ISOFIT PR-1022, Background topo updates
