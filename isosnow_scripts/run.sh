@@ -9,9 +9,14 @@ SENSOR="emit"
 wavelength_file="/Users/bawilder/Code/isofit-snow/emit/emit-wave.txt"
 
 # RDN, LOC, and OBS file paths for hyperspectral data
-rdn_file="/Users/bawilder/Code/sister/output/test2/clip/emit20250327T212148_000"
-loc_file="/Users/bawilder/Code/sister/output/test2/clip/emit20250327T212148_000_LOC"
-obs_file="/Users/bawilder/Code/sister/output/test2/clip/emit20250327T212148_000_OBS"
+#rdn_file="/Users/bawilder/Code/sister/output/test2/clip/emit20250327T212148_000"
+#loc_file="/Users/bawilder/Code/sister/output/test2/clip/emit20250327T212148_000_LOC"
+#obs_file="/Users/bawilder/Code/sister/output/test2/clip/emit20250327T212148_000_OBS"
+
+# RDN, LOC, and OBS file paths for hyperspectral data
+rdn_file="/Users/bawilder/Code/sister/output/test2/emit20250327T212148_000"
+loc_file="/Users/bawilder/Code/sister/output/test2/emit20250327T212148_000_LOC"
+obs_file="/Users/bawilder/Code/sister/output/test2/emit20250327T212148_000_OBS"
 
 # Path to emulator
 #EMULATOR_PATH="/Users/bawilder/Documents/sRTMnet/sRTMnet.h5"
@@ -27,7 +32,8 @@ ATMOS="ATM_MIDLAT_WINTER"
 SURFACE_CONFIG_DIR="/Users/bawilder/Code/isofit-PRs/isosnow_scripts/surfacelut.json"
 
 # Output directory. Will be created if it doesn't exist.
-OUTPUT_DIR="/Users/bawilder/Code/isofit-PRs/local/test/20260902_snowmodel"
+#OUTPUT_DIR="/Users/bawilder/Code/isofit-PRs/local/test/20260902_snowmodel"
+OUTPUT_DIR="/Users/bawilder/Code/isofit-PRs/local/test/20260910_snowmodel"
 
 #LUT_CONFIG="/Users/bawilder/Code/isofit-PRs/local/config-isofit-lut.json"
 
@@ -35,19 +41,20 @@ OUTPUT_DIR="/Users/bawilder/Code/isofit-PRs/local/test/20260902_snowmodel"
 LOGGING="INFO"
 
 # SKYVIEW
-SKYVIEW="/Users/bawilder/Code/sister/output/test2/clip/sky_view_factor"
+#SKYVIEW="/Users/bawilder/Code/sister/output/test2/clip/sky_view_factor"
+SKYVIEW="slope"
 
 # Ancillary data for postprocessing albedo
 VEG="/Users/bawilder/Documents/SNOW/EMIT/VEG_TESTING/modis_lakemary"
 
 ALBEDO="/Users/bawilder/Code/snow/LUT/EMIT_L3/EMIT_DISORT_20260828_ALBEDO_2.nc"
 
+# --prebuilt_lut="${LUT}" \
 
 # Run iso
 isofit apply_oe "${rdn_file}" "${loc_file}" "${obs_file}" "${OUTPUT_DIR}" "${SENSOR}" \
   --surface_path="${SURFACE_CONFIG_DIR}" \
   --wavelength_path="${wavelength_file}" \
-  --prebuilt_lut="${LUT}" \
   --emulator_base="${EMULATOR_PATH}" \
   --n_cores=${n_cores} \
   --atmosphere_type="${ATMOS}" \
