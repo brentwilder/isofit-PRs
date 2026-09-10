@@ -16,6 +16,8 @@
 
 ## Change log
 
+- 10 September 2026: Integrated analytical Jacobian to account for cos_i, instead of relying on numerical, 2-point method (EMIT speed test: 11.22 spectra/sec to 20.99 spectra/sec)
+
 - 9 September 2026: ISOFIT PR-1026, inversion windows patch (EMIT)
 
 - 2 September 2026: ISOFIT PR-1012, MODTRAN TP7 codes
@@ -27,7 +29,7 @@
 
 ## Other (maybe) helpful notes
 
-- Least squares uses 2-point method , skips custom Jac that ISOFIT has implemented.
+- Currently `S_hat` does not use any information from `Sa` because we use typically use uninformative priors in the snow model
 
 - `COS_I` is always set to be solved (instead of "flat" or "dem"), and is fully hooked up between surface and atmosphere RT.
 

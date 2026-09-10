@@ -169,7 +169,9 @@ class Inversion:
         """Calculate posterior distribution of state vector. This depends
         both on the location in the state space and the radiance (via noise)."""
 
-        Sa_inv = 0
+        # NOTE: for now, this assumes uninformative priors for the S_hat
+        # For our snow model this is a fairly safe assumption. 
+        # We do not typically make strict priors for grain size, etc.
 
         K = geom.total_jac
 
@@ -183,7 +185,7 @@ class Inversion:
         # pdb.set_trace()
         S_hat = np.linalg.pinv(
             K.T @ K
-        )  # TODO: testing with just 2pooint jac of fwd model
+        ) 
         # S_hat = np.linalg.pinv(K.T.dot(Seps_inv).dot(K) + Sa_inv)
 
         G = S_hat.dot(K.T).dot(Seps_inv)
@@ -358,10 +360,8 @@ class Inversion:
 
             # Initialize and invert
             try:
-                # xopt = least_squares(err, x0, jac=jac, **self.least_squares_params)
-                xopt = least_squares(
-                    err, x0, jac="2-point", **self.least_squares_params
-                )
+                xopt = least_squares(err, x0, jac=jac, **self.least_squares_params)
+                #xopt = least_squares(err, x0, jac="2-point", **self.least_squares_params)
                 geom.total_jac = xopt.jac[: len(self.winidx), :]
 
                 x_full_solution = self.full_statevector(xopt.x)

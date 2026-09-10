@@ -755,16 +755,19 @@ class ForwardModel:
         # To get the derivative w.r.t. Surface
         # ToDo: Move this to ForwardModel as well?
         drdn_dsurface = self.surface.drdn_dsurface(
-            rho_dif_dir=rho_dif_dir_hi,
-            drfl_dsurface=drfl_dsurface_hi,
-            dLs_dsurface=dLs_dsurface_hi,
-            s_alb=r["sphalb"],
-            t_total_up=self.atmosphere.get_upward_transm(r=r, geom=geom),
-            L_tot=L_tot,
-            L_dir_dir=L_dir_dir,
-            L_dir_dif=L_dir_dif,
-            L_dif_dir=L_dif_dir,
-            L_dif_dif=L_dif_dif,
+                        x_surface,
+                        geom,
+                        r,
+                        rho_dif_dir=rho_dif_dir_hi,
+                        drfl_dsurface=drfl_dsurface_hi,
+                        dLs_dsurface=dLs_dsurface_hi,
+                        s_alb=r["sphalb"],
+                        t_total_up=self.atmosphere.get_upward_transm(r=r, geom=geom),
+                        L_tot=L_tot,
+                        L_dir_dir=L_dir_dir,
+                        L_dir_dif=L_dir_dif,
+                        L_dif_dir=L_dif_dir,
+                        L_dif_dif=L_dif_dif,
         )
 
         # To get derivatives w.r.t. instrument, downsample to instrument wavelengths
