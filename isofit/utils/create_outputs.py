@@ -358,6 +358,7 @@ class SnowWorker(object):
         output_snow_uncert[..., self.dust_sidx] = sub_uncert[..., self.dust_idx]
         output_snow_uncert[..., self.algae_sidx] = sub_uncert[..., self.algae_idx]
         output_snow_uncert[..., self.cosi_sidx] = sub_uncert[..., self.cosi_idx]
+        output_snow_uncert[..., self.fsnow_sidx] = sub_uncert[..., self.fsnow_idx]
 
         # Exclude state (except for f_snow) where there is low snow
         low_snow_mask = f_snow_vals < FSNOW_THRESHOLD
@@ -386,6 +387,10 @@ class SnowWorker(object):
         fsca_denom = np.clip(fsca_denom, 1e-6, 1.0)
         fsca_val = f_snow_vals / fsca_denom
         output_snow[..., self.fsca_sidx] = np.clip(fsca_val, 0.0, 1.0)
+
+        # TODO
+        # For now, fSCA uncertainty is just the same as the fsnow endmember, but these are technically different.
+        output_snow_uncert[..., self.fsca_sidx] = output_snow_uncert[..., self.fsnow_sidx]
 
         r_indices, c_indices = np.where((f_snow_vals >= FSNOW_THRESHOLD))
 
